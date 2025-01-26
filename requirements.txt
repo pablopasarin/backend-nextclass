@@ -5,7 +5,6 @@ pydantic               # Validación de datos
 python-decouple        # Manejo de variables de entorno
 passlib[bcrypt]        # Manejo de contraseñas (cifrado)
 python-jose[cryptography]  # JWT (JSON Web Tokens) para autenticación
-smtplib                # Manejo de correos electrónicos
 email                  # Para enviar correos electrónicos
 alembic                # Migraciones para SQLAlchemy
 google-generativeai    # Acceso a Google Generative AI
