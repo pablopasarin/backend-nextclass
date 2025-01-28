@@ -4,7 +4,7 @@ from routers import user, auth, chat, classes, students  # Import modularized ro
 import models
 import database
 import logging
-
+import uvicorn
 
 
 
@@ -42,3 +42,7 @@ logger.debug("Logger initialized")
 def read_root():
     logger.debug("GET request to / endpoint")
     return {"message": "Welcome to the API!"}
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))  # Usa el puerto asignado por Railway
+    uvicorn.run(app, host="0.0.0.0", port=port)
