@@ -8,3 +8,4 @@ python-jose[cryptography]  # JWT (JSON Web Tokens) para autenticación
 alembic                # Migraciones para SQLAlchemy
 google-generativeai    # Acceso a Google Generative AI
 PyJWT
+email-validator
