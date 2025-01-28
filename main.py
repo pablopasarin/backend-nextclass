@@ -16,7 +16,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",  # URL del frontend en desarrollo
-        "https://frontend-nextclass.vercel.app",  # URL del frontend en producción
+        "https://nextclass.vercel.app",  # URL del frontend en producción
     ],
     allow_credentials=True,
     allow_methods=["*"],  # Permitir todos los métodos HTTP (GET, POST, PUT, DELETE, etc.)
