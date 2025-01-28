@@ -5,7 +5,7 @@ import models
 import database
 import logging
 import uvicorn
-
+import os
 
 
 # ---- Application Initialization ----
