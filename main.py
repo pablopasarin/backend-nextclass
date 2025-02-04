@@ -30,9 +30,12 @@ app.include_router(chat.router, prefix="/api", tags=["chat"])
 app.include_router(classes.router, prefix="/classes", tags=["classes"])
 app.include_router(students.router, prefix="/students", tags=["students"])
 
-# Create Database Tables
-models.Base.metadata.create_all(bind=database.engine)
-
+# Crear las tablas cuando la aplicación arranque
+@app.on_event("startup")
+def startup():
+    print("🔹 Creando tablas en la base de datos (si no existen)...")
+    models.Base.metadata.create_all(bind=database.engine)
+    print("✅ Tablas creadas.")
 
 
 logger = logging.getLogger('uvicorn.error')
