@@ -11,5 +11,6 @@ class Settings:
     SSL_CERTFILE = config("SSL_CERTFILE", default=None)
     SSL_KEYFILE = config("SSL_KEYFILE", default=None)
     USE_HTTPS = ENVIRONMENT == "production"
+    SQLALCHEMY_DATABASE_URL = config("MYSQLDATABASE_URL")
 
 settings = Settings()
