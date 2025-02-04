@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 # Database URL
-SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"  # Replace with your actual DB URL
+SQLALCHEMY_DATABASE_URL = "MYSQLDATABASE_URL"  # Replace with your actual DB URL
 
 # Create the Engine and SessionLocal
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
