@@ -11,4 +11,3 @@ PyJWT
 email-validator
 python-multipart
 pymysql
-os
