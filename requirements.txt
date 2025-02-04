@@ -10,3 +10,4 @@ google-generativeai    # Acceso a Google Generative AI
 PyJWT
 email-validator
 python-multipart
+pymysql
