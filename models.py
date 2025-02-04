@@ -206,3 +206,10 @@ class GradeHistory(Base):
 
     # Relación con `Grade`
     grade_ref = relationship("Grade", back_populates="history")
+
+
+from database import engine, Base
+
+# Crear las tablas en la base de datos
+def init_db():
+    Base.metadata.create_all(bind=engine)
