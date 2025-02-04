@@ -1,34 +1,24 @@
-import os
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from config import settings
 
-# Declare the Base
-Base = declarative_base()
+# Obtener la URL de la base de datos desde config.py
+DATABASE_URL = settings.SQLALCHEMY_DATABASE_URL
 
-# Database URL from environment variable
-DATABASE_URL = os.getenv("MYSQLDATABASE_URL")
-
-# Validar que la variable esté definida
-if not DATABASE_URL:
-    raise ValueError("❌ ERROR: La variable de entorno 'MYSQLDATABASE_URL' no está definida.")
-
-# Asegurar que usa el driver correcto para MySQL
+# Asegurar compatibilidad con pymysql si es MySQL
 if DATABASE_URL.startswith("mysql://"):
     DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://")
 
-# Create the Engine and SessionLocal
-engine = create_engine(DATABASE_URL, pool_pre_ping=True)  # pool_pre_ping=True para evitar desconexiones
+# Crear la conexión con SQLAlchemy
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {})
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
 
-
-# Dependency for getting the DB session
+# Dependencia para obtener la sesión de la base de datos
 def get_db():
     db = SessionLocal()
     try:
         yield db
-    except Exception as e:
-        print(f"❌ Error en la sesión de la base de datos: {e}")
-        db.rollback()  # Deshacer cambios en caso de error
     finally:
         db.close()
